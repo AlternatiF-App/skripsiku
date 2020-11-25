@@ -24,6 +24,11 @@ class GetClusters(generics.ListCreateAPIView):
         def dist(a, b, ax=1):
             return np.linalg.norm(a - b, axis=ax)
 
+        max = par1[0];
+        for i in range(0, len(par1)):
+            if (par1[i] > max):
+                max = par1[i];
+
         k = 3
         C_x = [76, 62, 62]
         C_y = [69, 77, 69]
