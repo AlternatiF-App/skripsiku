@@ -23,10 +23,11 @@ class RegisterSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         email = attrs.get('email', '')
         username = attrs.get('username', '')
+        teacher_class = attrs.get('teacher_class', '')
 
-        if not username.isalnum():
-            raise serializers.ValidationError(
-                self.default_error_messages)
+        # if not username.isalnum():
+        #     raise serializers.ValidationError(
+        #         self.default_error_messages)
         return attrs
 
     def create(self, validated_data):

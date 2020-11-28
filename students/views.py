@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import *
+from .pagination import *
 from copy import deepcopy
 import numpy as np
 from rest_framework import permissions
@@ -51,10 +52,25 @@ class GetClusters(generics.ListCreateAPIView):
 
         return Response({"clusters":clusters})
 
+class StudentsUpdateClusterList(generics.ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    pagination_class = LargeResultsSetPagination
+
 class StudentList(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    pagination_class = StandardResultsSetPagination
+
+class StudentsListByUser(generics.ListAPIView):
+    serializer_class = StudentSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        teacher = self.kwargs['teacher']
+        return Student.objects.filter(teacher__username=teacher)
 
 class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
