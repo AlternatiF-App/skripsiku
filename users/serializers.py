@@ -9,6 +9,12 @@ class GetUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'email', 'username', 'password', 'teacher_class', 'is_active']
 
+class UpdateUserSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField()
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'teacher_class']
+
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         max_length=68, min_length=6, write_only=True)

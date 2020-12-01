@@ -7,6 +7,14 @@ class GetUserView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = GetUserSerializer
 
+class UsersDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = GetUserSerializer
+
+class UserUpdate(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UpdateUserSerializer
+
 class RegisterView(APIView):
     def post(self, request):
         users = request.data

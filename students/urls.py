@@ -8,8 +8,8 @@ urlpatterns = [
     path('api/clusters/', views.GetClusters.as_view()),
     path('api/students/', views.StudentList.as_view()),
     path('api/students-update/', views.StudentsUpdateClusterList.as_view()),
-    re_path('^api/students/(?P<teacher>.+)/$', views.StudentsListByUser.as_view()),
     path('api/students/<int:pk>/', views.StudentDetail.as_view()),
+    re_path('^api/students/(?P<teacher>.+)/$', views.StudentsListByUser.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
