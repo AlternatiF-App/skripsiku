@@ -25,15 +25,37 @@ class GetClusters(generics.ListCreateAPIView):
         def dist(a, b, ax=1):
             return np.linalg.norm(a - b, axis=ax)
 
-        max = par1[0];
+        max1 = par1[0];
         for i in range(0, len(par1)):
-            if (par1[i] > max):
-                max = par1[i];
+            if (par1[i] > max1):
+                max1 = par1[i];
+        min1 = par1[0];
+        for i in range(0, len(par1)):
+            if (par1[i] < min1):
+                min1 = par1[i];
+
+        max2 = par2[0];
+        for i in range(0, len(par2)):
+            if (par2[i] > max2):
+                max2 = par2[i];
+        min2 = par2[0];
+        for i in range(0, len(par2)):
+            if (par2[i] < min2):
+                min2 = par2[i];
+
+        max3 = par3[0];
+        for i in range(0, len(par3)):
+            if (par3[i] > max3):
+                max3 = par3[i];
+        min3 = par3[0];
+        for i in range(0, len(par3)):
+            if (par3[i] < min3):
+                min3 = par3[i];
 
         k = 3
-        C_x = [76, 62, 62]
-        C_y = [69, 77, 69]
-        C_z = [64, 64, 73]
+        C_x = [max1, min2, min3]
+        C_y = [min1, max2, min3]
+        C_z = [min1, min2, max3]
         C = np.array(list(zip(C_x, C_y, C_z)), dtype=np.int)
 
         C_old = np.zeros(C.shape)
