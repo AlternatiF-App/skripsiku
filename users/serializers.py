@@ -52,10 +52,10 @@ class LoginSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         email = attrs.get('email', '')
         password = attrs.get('password', '')
-
         user = auth.authenticate(email=email, password=password)
-        if not user.is_active:
-            raise serializers.ValidationError('User not active, please contact admin')
+
+        # if not user.is_active:
+        #     raise serializers.ValidationError('User not active, please contact admin')
         if not user:
             raise serializers.ValidationError('Invalid users, try again')
         return {
