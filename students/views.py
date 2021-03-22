@@ -77,6 +77,8 @@ class GetClusters(generics.ListCreateAPIView):
             error = dist(C, C_old, None)
 
         return Response({"clusters":clusters})
+        # return Response((distances, X[i]))
+        # return Response(C_old)
 
 class StudentsUpdateClusterList(generics.ListCreateAPIView):
     queryset = Student.objects.all()
